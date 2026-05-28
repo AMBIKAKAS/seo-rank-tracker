@@ -1,15 +1,50 @@
 import mongoose from "mongoose";
 
-const schema = new mongoose.schema({
-name : {type: String, reqiured:true,trim:true},
-email: {type: String, reqiured:true,trim:true,unique:true,lowercase:"true"},
-password:{type: String, reqiured:true},
-plan:{type:String,enum:["free","pro"],default:"free"},
-analysiscount:{type:Number,default:0},
-lastanalysisdate:{type:Date,default:"null"},
+const userSchema = new mongoose.Schema({
 
-},{timestamp:"true"})
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-const User = mongoose.model("User",userSchema)
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+    lowercase: true,
+  },
 
-export default user;
+  password: {
+    type: String,
+    required: true,
+  },
+
+  plan: {
+    type: String,
+    enum: ["free", "pro"],
+    default: "free",
+  },
+
+  analysiscount: {
+    type: Number,
+    default: 0,
+  },
+
+  lastanalysisdate: {
+    type: Date,
+    default: null,
+  },
+
+}, {
+  timestamps: true,
+});
+
+const User =
+  mongoose.model(
+    "User",
+    userSchema
+  );
+
+export default User;
